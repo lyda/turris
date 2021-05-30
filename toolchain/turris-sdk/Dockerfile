@@ -6,8 +6,8 @@ ENV TAG=$TAG
 ENV DEVICE=$DEVICE
 RUN echo "Building for ${DEVICE}@${TAG}"
 
-RUN apt update && \
-	apt -y install --no-install-recommends \
+RUN apt-get update && \
+	apt-get -y install --no-install-recommends \
     # Basic
     ca-certificates wget curl git gettext unzip xz-utils \
     # Standard build toolchain \
@@ -19,7 +19,7 @@ RUN apt update && \
     # SDK / CI Tooling
     sudo vim gpg \
     # Cleanup
-    && apt clean && rm -rf /var/lib/apt/lists/* 
+    && apt-get clean && rm -rf /var/lib/apt/lists/* 
 
 # Setup build user and directories
 RUN groupadd -g 2000 turris-build && useradd -u 2000 -m -g turris-build turris-build &&\
